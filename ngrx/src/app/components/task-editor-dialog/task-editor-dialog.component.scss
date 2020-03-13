@@ -1,0 +1,257 @@
+@import "variables";
+
+.task-editor-modal {
+  min-height: 320px;
+  background: $color-white;
+  width: 100%;
+  max-width: 600px;
+  min-width: 540px;
+  //position: relative;
+  //z-index: 191;
+
+  &__title-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    padding: 0 0 0 3px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__row {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+
+    &--inline {
+      display: flex;
+      flex-flow: row;
+    }
+  }
+
+  &__marks {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    position: relative;
+  }
+
+  &__mark {
+    width: 36px;
+    height: 36px;
+    max-height: 36px;
+    border-radius: 3px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--main {
+      background-color: $color-grey-200;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: $color-grey-500;
+      }
+
+      .mat-icon {
+        position: static !important;
+      }
+    }
+
+    &--green {
+      background: $mark-color-green;
+    }
+
+    &--yellow {
+      background: $mark-color-yellow;
+    }
+
+    &--orange {
+      background: $mark-color-orange;
+    }
+
+    &--red {
+      background: $mark-color-red;
+    }
+
+    &--purple {
+      background: $mark-color-purple;
+    }
+
+    &--blue {
+      background: $mark-color-blue;
+    }
+  }
+
+  &__subscribe-wrap {
+    margin-right: 10px;
+  }
+
+  &__comment {
+    ::ng-deep .editor {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .mat-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__commetns {
+    max-height: 250px;
+    overflow: auto;
+
+    .comments {
+      &__item {
+        border-bottom: 1px solid $color-grey-200;
+      }
+
+      &__commentator {
+        text-transform: capitalize;
+        color: $color-blue-600;
+        text-decoration: underline;
+      }
+
+      &__comment {
+
+      }
+
+      &__delete {
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+    }
+  }
+}
+
+.users-list {
+  display: flex;
+  align-items: center;
+  flex-flow: row-reverse;
+  margin-right: 10px;
+  margin-bottom: 0;
+
+  &__user {
+    width: 28px;
+    height: 28px;
+    background: $color-grey-200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    text-transform: uppercase;
+    //margin-left: -23px;
+    //border: 1px solid $color-grey-500;
+  }
+}
+
+.marks-modal-wrap {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  border-radius: 3px;
+}
+
+.marks-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.marks-modal {
+  border: 1px solid $color-grey-200;
+  position: relative;
+  z-index: 1;
+  background: $color-white;
+  padding: 5px;
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px 5px 20px;
+    border-bottom: 1px solid $color-grey-200;
+
+    ::ng-deep .delete-button-wrap {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  &__list {
+    margin-top: 5px;
+  }
+
+  &__item {
+    width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+    height: 32px;
+    max-height: 32px;
+    border-radius: 3px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &--green {
+      background: $mark-color-green;
+    }
+
+    &--yellow {
+      background: $mark-color-yellow;
+    }
+
+    &--orange {
+      background: $mark-color-orange;
+    }
+
+    &--red {
+      background: $mark-color-red;
+    }
+
+    &--purple {
+      background: $mark-color-purple;
+    }
+
+    &--blue {
+      background: $mark-color-blue;
+    }
+
+    .mat-icon {
+      position: static;
+    }
+  }
+}
+
+

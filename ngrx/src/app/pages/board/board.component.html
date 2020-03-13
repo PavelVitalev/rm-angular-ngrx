@@ -1,0 +1,32 @@
+<div class="board-wrap" cdkDropListGroup>
+  <app-board-header *ngIf="!(getBoardState$ | async)?.isFetching"></app-board-header>
+
+  <div class="board__columns">
+
+    <ng-container *ngFor="let column of (getBoard$ | async)?.columns; trackBy: trackById;">
+      <app-column
+        [columnData]="column"
+      ></app-column>
+    </ng-container>
+
+
+    <div class="column-add-wrap">
+      <div class="column-add">
+        <div class="column-add__header" (click)="openCreator()" *ngIf="!isOpenCreate">
+          Добавьте еще одну колонку
+        </div>
+        <div class="column-add__create" *ngIf="isOpenCreate">
+          <app-editor
+            [formContromName]="columnTitleControl"
+            (blurAction)="onCreateColumn()"
+            (escAction)="cancelCreateColumn()"
+          ></app-editor>
+          <button mat-raised-button color="primary">Создать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-loader *ngIf="(getBoardState$ | async)?.isFetching"></app-loader>

@@ -1,0 +1,43 @@
+@import "variables";
+
+.board-wrap {
+  background: url('src/assets/images/default-background.jpg') center;
+  background-size: cover;
+  height: calc(100vh - 64px);
+}
+
+.board {
+  &__columns {
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    top: 125px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+  }
+}
+
+//
+.column-add-wrap {
+  margin: 0 5px;
+  min-width: 272px;
+  height: 100%;
+  position: relative;
+  padding-right: 10px;
+}
+
+.column-add {
+  background-color: transparentize($color-grey-200, 0.3);
+  padding: 10px;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+  //cursor: pointer;
+  color: $color-white;
+}
+//

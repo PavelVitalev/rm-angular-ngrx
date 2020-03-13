@@ -1,0 +1,11 @@
+<input
+  [formControl]="formContromName"
+  [appAutofocus]="true"
+  [ngClass]="classes"
+  class="editor"
+  type="text"
+  (blur)="focusOut($event)"
+  (keyup.enter)="keyEnter($event)"
+  (keydown.esc)="keyEsc($event)"
+  [placeholder]="placeholder || ''"
+>

@@ -1,0 +1,24 @@
+<div class="board-header">
+  <div
+    class="board-header__title"
+    (click)="openEditor()"
+    *ngIf="!(isOpenEditior$ | async)"
+  >
+    {{(board$ | async)?.title}}
+  </div>
+
+  <app-editor
+    *ngIf="(isOpenEditior$ | async)"
+    [formContromName]="boardTitleControl"
+    (blurAction)="onEditTitle()"
+    (enterAction)="onEditTitle()"
+    (escAction)="keyEsc()"
+  ></app-editor>
+
+  <button (click)="onSubscribe()" mat-stroked-button color="primary">Подписаться</button>
+
+  <app-subscibed-users></app-subscibed-users>
+
+  <div class="flex-spacer"></div>
+  <app-delete-button (click)="deleteBoard()" [classes]="'white'"></app-delete-button>
+</div>

@@ -1,0 +1,95 @@
+<div class="task-editor-modal">
+  <div class="task-editor-modal__row task-editor-modal__title-wrap">
+    <mat-icon>note</mat-icon>
+    <div
+      class="task-editor-modal__title"
+      (click)="openEditor()"
+      *ngIf="!(isOpenEditor)"
+    >
+      {{taskName}}
+    </div>
+    <app-editor
+      *ngIf="(isOpenEditor)"
+      [formContromName]="taskNameControl"
+      (blurAction)="onEditTitle()"
+      (enterAction)="onEditTitle()"
+      (escAction)="keyEsc()"
+
+    ></app-editor>
+  </div>
+
+  <div class="task-editor-modal__row task-editor-modal__row--inline">
+
+    <ul class="users-list list-unstyled">
+      <li class="users-list__user" *ngFor="let user of getSubsctibedUsers(); trackBy: trackById;">{{user}}</li>
+    </ul>
+
+    <div class="task-editor-modal__subscribe-wrap">
+      <button mat-raised-button color="primary" (click)="onSubscribeOnTask()">Подписаться</button>
+    </div>
+
+    <div class="task-editor-modal__marks-wrap">
+      <ul class="task-editor-modal__marks list-unstyled">
+        <li
+          *ngFor="let mark of task?.marks; trackBy: trackByName;"
+          class="task-editor-modal__mark"
+          [ngClass]="'task-editor-modal__mark--' + mark"
+        ></li>
+        <li class="task-editor-modal__mark task-editor-modal__mark--main" (click)="openMarks()">
+          <mat-icon>add</mat-icon>
+        </li>
+
+        <div class="marks-modal-wrap" *ngIf="isOpenMarks">
+          <div class="marks-modal-overlay" (click)="closeMarks()"></div>
+          <div class="marks-modal">
+            <div class="marks-modal__header">
+              Метки
+              <app-delete-button (click)="closeMarks()" classes="grey"></app-delete-button>
+            </div>
+            <div class="marks-modal__list">
+              <div
+                *ngFor="let mark of marksNames; trackBy: trackByName;"
+                class="marks-modal__item"
+                [ngClass]="'marks-modal__item--' + mark"
+                (click)="selectMark(mark)"
+              >
+                <mat-icon *ngIf="isCheckedMark(mark)">check</mat-icon>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task-editor-modal__row task-editor-modal__comment">
+    <mat-icon>comment</mat-icon>
+    <app-editor
+      [placeholder]="'Напишите комментарий...'"
+      [formContromName]="taskCommentControl"
+    ></app-editor>
+
+    <div class="task-editor-modal__comment__btn">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!isEmptyComment()"
+        (click)="sendComment()"
+      >Сохранить</button>
+    </div>
+  </div>
+
+  <div class="task-editor-modal__row">
+    <div class="task-editor-modal__commetns">
+      <ul class="comments list-unstyled">
+        <li class="comments__item" *ngFor="let comment of task.comments; trackBy: trackById;">
+          <div class="comments__commentator">{{comment.name}}</div>
+          <div class="comments__comment">{{comment.comment}}</div>
+          <div class="comments__delete" (click)="deleteComment(comment._id)">Удалить</div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

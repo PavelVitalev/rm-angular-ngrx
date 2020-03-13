@@ -1,0 +1,16 @@
+<mat-toolbar class="header" color="primary">
+  <mat-toolbar-row>
+    <mat-icon routerLink="/boards" class="header__icon" aria-hidden="false">home</mat-icon>
+    <span class="header-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="headerMenu"><mat-icon>more_vert</mat-icon></button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu class="header-menu" #headerMenu="matMenu">
+  <a class="header-menu__item" routerLink="/boards">Boards</a>
+  <a class="header-menu__item" routerLink="/sign-in">SignIn</a>
+  <a class="header-menu__item" routerLink="/sign-up">SignUp</a>
+  <a class="header-menu__item" (click)="logOut()">Log out</a>
+
+
+</mat-menu>

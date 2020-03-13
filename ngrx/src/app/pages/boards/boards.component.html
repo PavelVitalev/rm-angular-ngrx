@@ -1,0 +1,35 @@
+<div class="boards-wrap container-wrap">
+  <ul class="boards-list list-unstyled">
+    <li
+      class="boards-list__item"
+      *ngFor="let board of (getBoards$ | async)?.boards; trackBy: trackById;"
+    >
+      <a [routerLink]="['/board', board._id]" class="boards-list__link">
+        <span class="boards-list__title">{{board.title}}</span>
+      </a>
+    </li>
+
+    <li *ngIf="!(getBoardsState$ | async)?.isFetching" class="boards-list__item">
+      <div class="boards-list__btn-wrap">
+        <div class="boards-list__btn" *ngIf="!(getBoardsState$ | async)?.isOpenBoardCreator" (click)="openCreator()">Создать доску</div>
+
+        <div class="boards-list__creator" *ngIf="(getBoardsState$ | async)?.isOpenBoardCreator">
+          <app-editor
+            [formContromName]="newBoardTitleControl"
+            (enterAction)="sendCreateBoard()"
+            (escAction)="cancelCreate()"
+          ></app-editor>
+          <div class="boards-list__creator__btns">
+            <button mat-raised-button color="primary" (click)="sendCreateBoard()">Создать</button>
+            <app-delete-button (click)="closeCreator()" [classes]="'white'"></app-delete-button>
+          </div>
+
+        </div>
+      </div>
+
+    </li>
+
+  </ul>
+
+  <app-loader *ngIf="(getBoardsState$ | async)?.isFetching"></app-loader>
+</div>

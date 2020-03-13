@@ -1,0 +1,22 @@
+<div class="task" (click)="openDialog()" cdkDrag>
+
+  <app-delete-button (click)="deleteTask($event)" [classes]="'gray'"></app-delete-button>
+
+  <div class="marks-wrap">
+    <div class="mark" *ngFor="let mark of task?.marks; trackBy: trackById;" [ngClass]="'mark--' + mark"></div>
+  </div>
+
+  <div class="task__title">{{task.task}}</div>
+
+  <div class="task__icons-wrap">
+    <div class="task__icons" *ngIf="task?.users?.length">
+      <mat-icon>remove_red_eye</mat-icon>
+      {{task?.users.length}}
+    </div>
+    <div class="task__icons" *ngIf="task?.comments?.length">
+      <mat-icon>mode_comment</mat-icon>
+      {{task?.comments?.length}}
+    </div>
+  </div>
+
+</div>

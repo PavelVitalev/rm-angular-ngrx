@@ -1,0 +1,27 @@
+<div class="signin-wrap">
+  <form class="signin-form" [formGroup]="signInForm" (submit)="onSignIn()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Enter your email" formControlName="email">
+      <mat-error *ngIf="email?.invalid">{{getErrorMessage(email)}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Enter your password" formControlName="password" type="password">
+      <mat-error *ngIf="password?.invalid">{{getErrorMessage(password)}}</mat-error>
+    </mat-form-field>
+
+    <button class="signin-form__btn" type="submit" mat-raised-button color="primary">
+      <ng-container *ngIf="!(getState$ | async)?.isFetching">
+        SignIn
+      </ng-container>
+      <ng-container *ngIf="(getState$ | async)?.isFetching">
+        <mat-spinner diameter="25" color="#ffffff"></mat-spinner>
+      </ng-container>
+
+    </button>
+
+  </form>
+</div>

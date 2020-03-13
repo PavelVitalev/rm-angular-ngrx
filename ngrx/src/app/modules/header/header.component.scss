@@ -1,0 +1,48 @@
+@import "variables";
+
+.header {
+  &-spacer {
+    flex: 1;
+  }
+
+  &__icon {
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+::ng-deep {
+  .header-menu {
+    &__item {
+      user-select: none;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      line-height: 48px;
+      height: 48px;
+      padding: 0 16px;
+      text-align: left;
+      text-decoration: none;
+      max-width: 100%;
+      position: relative;
+      color: $color-black;
+
+      &:hover {
+        text-decoration: none;
+        background: transparentize($color-black, 0.96);
+      }
+    }
+
+    .mat-menu-content {
+      display: flex;
+      flex-flow: column;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div
+  class="column-wrap"
+>
+  <div class="column">
+    <div class="column-header">
+      <div class="column-header__title-wrap">
+        <h5 class="column-header__title" *ngIf="!(isOpenEditior$ | async)" (click)="openEditor()">{{column?.title}}</h5>
+
+        <app-editor
+          *ngIf="(isOpenEditior$ | async)"
+          [formContromName]="columnTitleControl"
+          (blurAction)="onEditTitle()"
+          (enterAction)="onEditTitle()"
+          (escAction)="keyEsc()"
+        ></app-editor>
+
+        <app-delete-button (click)="deleteColumn()" [classes]="'gray'"></app-delete-button>
+
+      </div>
+    </div>
+    <div class="column-body">
+
+      <div
+        cdkDropList
+        [cdkDropListData]="column.tasks"
+        (cdkDropListDropped)="drop($event)"
+        [attr.column-id]="column._id"
+        class="tasks-wrap"
+      >
+        <ng-container *ngFor="let task of column?.tasks; trackBy: trackById;">
+          <app-task [task]="task" [columnId]="column._id"></app-task>
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="column-footer">
+      <div (click)="openCreator()" *ngIf="!(isOpenCreator$ | async)">Добавить ещё одну карточку</div>
+
+      <div class="column-footer-inner" *ngIf="(isOpenCreator$ | async)">
+        <app-editor
+          [formContromName]="newTaskTitleControl"
+          (enterAction)="sendCreateTask()"
+          (escAction)="cancelCreate()"
+        ></app-editor>
+        <div class="column-footer-inner__btns">
+          <button mat-raised-button color="primary" (click)="sendCreateTask()">Создать</button>
+          <app-delete-button (click)="cancelCreate()" [classes]="'grey'"></app-delete-button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

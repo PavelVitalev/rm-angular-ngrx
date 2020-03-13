@@ -1,0 +1,33 @@
+@import "variables";
+
+.delete-button-wrap {
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  user-select: none;
+
+  &:hover {
+    background: $color-white;
+  }
+
+  &--white {
+    color: $color-white;
+
+    &:hover {
+      background: transparentize($color-black, 0.5);
+    }
+  }
+
+  &--grey {
+    color: $color-grey-500;
+
+    &:hover {
+      background: $color-grey-200;
+    }
+  }
+}
